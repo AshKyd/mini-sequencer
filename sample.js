@@ -48,12 +48,12 @@ var song = [
 // Fire up a sequencer with all of the above
 var s = new Sequencer({
     loopSpeed: loopSpeed, // milliseconds per beat
-    instruments: instruments,
-    loops: loops,
-    song: song,
-    jsfxr: jsfxr,
-    loop: true,
+    instruments: instruments, // The Audio elements
+    loops: loops, // Loops
+    song: song, // The actual song
+    loop: true, // Loop over and over
     onComplete: function(){
+        // Call me every time the song ends
         console.log('Song looping');
     }
 });
