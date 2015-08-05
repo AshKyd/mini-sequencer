@@ -14,6 +14,7 @@ function Sequencer(opts){
     var loop = 0;
     var ctx = new (window.AudioContext || webkitAudioContext)();
     _this.buffer = opts.buffer || 0.2;
+    _this.loopSpeed = opts.loopSpeed;
 
     var instruments, song, startTime;
 
@@ -86,11 +87,12 @@ function Sequencer(opts){
                     if(opts.onComplete){
                         opts.onComplete();
                     }
+                    continue;
                 }
 
                 // The point at which this set of sounds is to be played.
                 // Based on start time, position in song, and number of loops.
-                var playAt = startTime + (opts.loopSpeed*position + song.length*loop*opts.loopSpeed)/1000;
+                var playAt = startTime + (_this.loopSpeed*position + song.length*loop*_this.loopSpeed)/1000;
 
                 // If the buffer is more than 1.4 seconds, stop populating it.
                 if(playAt > ctx.currentTime + _this.buffer){
